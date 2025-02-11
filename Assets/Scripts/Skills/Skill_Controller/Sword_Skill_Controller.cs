@@ -67,7 +67,7 @@ public class Sword_Skill_Controller : MonoBehaviour
 
         spinDirection = Mathf.Clamp(rb.velocity.x,-1,1);
 
-        Invoke("DestroyMe", 7);
+        Invoke("DestoryMe", 7);
 
     }
 
