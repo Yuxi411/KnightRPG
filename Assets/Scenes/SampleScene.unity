@@ -304,6 +304,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashDuration: 0.2
   hitMat: {fileID: 2100000, guid: 6cc4ba96b8eaf684db33ab0b017bd3fd, type: 2}
+  igniteColor:
+  - {r: 0.7254902, g: 0.06666667, b: 0.078431375, a: 1}
+  - {r: 0.9529412, g: 0.7529412, b: 0.7529412, a: 1}
+  chillColor:
+  - {r: 0.48742133, g: 0.5924999, b: 1, a: 1}
+  - {r: 0.49019608, g: 0.59607846, b: 1, a: 1}
+  shockColor:
+  - {r: 1, g: 0.85250163, b: 0.17295581, a: 1}
+  - {r: 0.94509804, g: 0.8745098, b: 0.54901963, a: 1}
 --- !u!114 &26653340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,7 +338,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   damage:
-    baseValue: 10
+    baseValue: 0
     modifiers: 
   critChance:
     baseValue: 0
@@ -356,11 +365,12 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   lightingDamage:
-    baseValue: 0
+    baseValue: 10
     modifiers: 
   isIgnited: 0
   isChilled: 0
   isShocked: 0
+  alimentsDuration: 4
   currentHealth: 0
 --- !u!1 &108682725
 GameObject:
@@ -1875,6 +1885,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashDuration: 0.2
   hitMat: {fileID: 2100000, guid: 6cc4ba96b8eaf684db33ab0b017bd3fd, type: 2}
+  igniteColor:
+  - {r: 0.7254902, g: 0.06666667, b: 0.078431375, a: 1}
+  - {r: 0.9529412, g: 0.7529412, b: 0.7529412, a: 1}
+  chillColor:
+  - {r: 0.48742133, g: 0.5924999, b: 1, a: 1}
+  - {r: 0.49019608, g: 0.59607846, b: 1, a: 1}
+  shockColor:
+  - {r: 1, g: 0.85250163, b: 0.17295581, a: 1}
+  - {r: 0.94509804, g: 0.8745098, b: 0.54901963, a: 1}
 --- !u!114 &1125621972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1932,6 +1951,7 @@ MonoBehaviour:
   isIgnited: 0
   isChilled: 0
   isShocked: 0
+  alimentsDuration: 4
   currentHealth: 0
 --- !u!70 &1125621973
 CapsuleCollider2D:
@@ -5609,7 +5629,7 @@ SceneRoots:
   - {fileID: 26653336}
   - {fileID: 1062354804}
   - {fileID: 108682726}
-  - {fileID: 1527848899}
-  - {fileID: 1030916367}
   - {fileID: 1125621967}
   - {fileID: 2012614302}
+  - {fileID: 1527848899}
+  - {fileID: 1030916367}

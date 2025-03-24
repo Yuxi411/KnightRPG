@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
+    private EntityFX fx;
 
     [Header("Major stats")]
     public Stat strength;  // 1 point increase damage by 1 and crit.power by 1%
@@ -32,6 +33,7 @@ public class CharacterStats : MonoBehaviour
     public bool isChilled;//reduce armor by 20%
     public bool isShocked;//reduce accuracy by 20%
 
+    [SerializeField] private float alimentsDuration = 4;
     private float ignitedTimer;
     private float chilledTimer;
     private float shockedTimer;
@@ -49,6 +51,8 @@ public class CharacterStats : MonoBehaviour
     {
         critPower.SetDefaultValue(150);
         currentHealth = GetMaxHealthValue();
+
+        fx = GetComponent<EntityFX>();
     }
 
     protected virtual void Update()
@@ -166,20 +170,26 @@ public class CharacterStats : MonoBehaviour
 
         if (_ignite)
         {
+            ignitedTimer = alimentsDuration;
             isIgnited = _ignite;
-            ignitedTimer = 2;
+
+            fx.IgniteFxFor(alimentsDuration);
         }
 
         if (_chill)
         {
+            chilledTimer = alimentsDuration;
             isChilled = _chill;
-            chilledTimer = 2;
+
+            fx.ChillFxFor(alimentsDuration);
         }
 
         if (_shock)
         {
+            shockedTimer = alimentsDuration;
             isShocked = _shock;
-            shockedTimer = 2;
+                
+            fx.ShockFxFor(alimentsDuration);
         }
 
     }
