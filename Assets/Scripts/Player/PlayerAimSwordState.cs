@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerAimSwordState : PlayerState
@@ -11,6 +12,7 @@ public class PlayerAimSwordState : PlayerState
     public override void Enter()
     {
         base.Enter();
+
         player.skill.sword.DotsActive(true);
     }
 
@@ -25,10 +27,10 @@ public class PlayerAimSwordState : PlayerState
     {
         base.Update();
 
+        player.SetZeroVelocity();
+
         if (Input.GetKeyUp(KeyCode.Mouse1))
             stateMachine.ChangeState(player.idleState);
-
-        player.SetZeroVelocity();
 
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 

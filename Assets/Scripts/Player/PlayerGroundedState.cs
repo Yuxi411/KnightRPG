@@ -6,8 +6,8 @@ public class PlayerGroundedState : PlayerState
 {
     public PlayerGroundedState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
-
     }
+
     public override void Enter()
     {
         base.Enter();
@@ -26,18 +26,18 @@ public class PlayerGroundedState : PlayerState
             stateMachine.ChangeState(player.blackHole);
 
         if (Input.GetKeyDown(KeyCode.Mouse1) && HasNoSword())
-            stateMachine.ChangeState(player.aimSword);
+            stateMachine.ChangeState(player.aimSowrd);
 
         if (Input.GetKeyDown(KeyCode.Q))
             stateMachine.ChangeState(player.counterAttack);
 
-        if(Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
             stateMachine.ChangeState(player.primaryAttack);
 
-        if(!player.IsGroundDetected())
+        if (!player.IsGroundDetected())
             stateMachine.ChangeState(player.airState);
 
-        if(Input.GetKeyDown(KeyCode.Space) && player.IsGroundDetected())
+        if (Input.GetKeyDown(KeyCode.Space) && player.IsGroundDetected())
             stateMachine.ChangeState(player.jumpState);
     }
 
@@ -47,6 +47,7 @@ public class PlayerGroundedState : PlayerState
         {
             return true;
         }
+
         player.sword.GetComponent<Sword_Skill_Controller>().ReturnSword();
         return false;
     }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class SkeletonStunnedState : EnemyState
 {
     private Enemy_Skeleton enemy;
+
     public SkeletonStunnedState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Enemy_Skeleton _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
     {
         this.enemy = _enemy;
@@ -18,7 +19,7 @@ public class SkeletonStunnedState : EnemyState
 
         stateTimer = enemy.stunDuration;
 
-        rb.velocity=new Vector2(-enemy.facingDir * enemy.stunDirection.x, enemy.stunDirection.y);
+        rb.velocity = new Vector2(-enemy.facingDir * enemy.stunDirection.x, enemy.stunDirection.y);
     }
 
     public override void Exit()

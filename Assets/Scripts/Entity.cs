@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Accessibility;
 
 public class Entity : MonoBehaviour
 {
-    #region Compoments
+
+    #region Components
     public Animator anim { get; private set; }
     public Rigidbody2D rb { get; private set; }
     public EntityFX fx { get; private set; }
     public SpriteRenderer sr { get; private set; }
-    public CharacterStats stats {  get; private set; }
-    public CapsuleCollider2D cd { get; private set; }
+    public CharacterStats stats { get; private set; }
+    public CapsuleCollider2D cd {  get; private set; }
     #endregion
 
     [Header("Knockback info")]
@@ -52,16 +54,24 @@ public class Entity : MonoBehaviour
 
     }
 
-    public virtual void DamageEffect()
+    public virtual void SlowEntityBy(float _slowPercentage, float _slowDuration)
     {
-        fx.StartCoroutine("FlashFX");
-        StartCoroutine("HitKnockback");
+        
     }
 
+    protected virtual void ReturnDefaultSpeed()
+    {
+        anim.speed = 1;
+    }
+
+    public virtual void DamageImpact() => StartCoroutine("HitKnockback");
+ 
     protected virtual IEnumerator HitKnockback()
     {
         isKnocked = true;
-        rb.velocity = new Vector2(knockbackDirection.x * -facingDir , knockbackDirection.y);
+
+        rb.velocity = new Vector2(knockbackDirection.x * -facingDir, knockbackDirection.y);
+
         yield return new WaitForSeconds(knockbackDuration);
         isKnocked = false;
     }
@@ -72,8 +82,9 @@ public class Entity : MonoBehaviour
         if (isKnocked)
             return;
 
-        rb.velocity = new Vector2(0,0);
+        rb.velocity = new Vector2(0, 0);
     }
+
     public void SetVelocity(float _xVelocity, float _yVelocity)
     {
         if (isKnocked)
@@ -86,6 +97,7 @@ public class Entity : MonoBehaviour
     #region Collision
     public virtual bool IsGroundDetected() => Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
     public virtual bool IsWallDetected() => Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, wallCheckDistance, whatIsGround);
+
     protected virtual void OnDrawGizmos()
     {
         Gizmos.DrawLine(groundCheck.position, new Vector3(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
@@ -100,7 +112,6 @@ public class Entity : MonoBehaviour
         facingRight = !facingRight;
         transform.Rotate(0, 180, 0);
 
-
         if(onFlipped != null)
             onFlipped();
     }
@@ -114,13 +125,7 @@ public class Entity : MonoBehaviour
     }
     #endregion
 
-    public void MakeTransprent(bool _transprent)
-    {
-        if(_transprent)
-            sr.color = Color.clear;
-        else
-            sr.color = Color.white;
-    }
+    
 
     public virtual void Die()
     {

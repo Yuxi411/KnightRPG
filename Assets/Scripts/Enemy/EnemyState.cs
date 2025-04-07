@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyState
+public class EnemyState 
 {
+
     protected EnemyStateMachine stateMachine;
     protected Enemy enemyBase;
     protected Rigidbody2D rb;
@@ -22,14 +23,16 @@ public class EnemyState
 
     public virtual void Update()
     {
-        stateTimer-= Time.deltaTime;
+        stateTimer -= Time.deltaTime;
     }
+
 
     public virtual void Enter()
     {
         triggerCalled = false;
         rb = enemyBase.rb;
         enemyBase.anim.SetBool(animBoolName, true);
+        
     }
 
     public virtual void Exit()
@@ -40,6 +43,6 @@ public class EnemyState
 
     public virtual void AnimationFinishTrigger()
     {
-        triggerCalled= true;
+        triggerCalled = true;
     }
 }

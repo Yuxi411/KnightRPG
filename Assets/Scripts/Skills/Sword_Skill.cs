@@ -1,9 +1,10 @@
 using System;
+using System.Runtime.ExceptionServices;
 using UnityEngine;
 
 public enum SwordType
 {
-    Reguler,
+    Regular,
     Bounce,
     Pierce,
     Spin
@@ -11,19 +12,19 @@ public enum SwordType
 
 public class Sword_Skill : Skill
 {
-    public SwordType swordType = SwordType.Reguler;
+    public SwordType swordType = SwordType.Regular;
 
     [Header("Bounce info")]
     [SerializeField] private int bounceAmount;
     [SerializeField] private float bounceGravity;
-    [SerializeField]private float bounceSpeed;
+    [SerializeField] private float bounceSpeed;
 
-    [Header("Pierce info")]
+    [Header("Peirce info")]
     [SerializeField] private int pierceAmount;
     [SerializeField] private float pierceGravity;
 
     [Header("Spin info")]
-    [SerializeField] private float hitCooldown =.35f;
+    [SerializeField] private float hitCooldown = .35f;
     [SerializeField] private float maxTravelDistance = 7;
     [SerializeField] private float spinDuration = 2;
     [SerializeField] private float spinGravity = 1;
@@ -35,12 +36,14 @@ public class Sword_Skill : Skill
     [SerializeField] private float freezeTimeDuration;
     [SerializeField] private float returnSpeed;
 
+
+
     private Vector2 finalDir;
 
-    [Header("Aim dot")]
+    [Header("Aim dots")]
     [SerializeField] private int numberOfDots;
-    [SerializeField] private float spaceBetweenDots;
-    [SerializeField] private GameObject dotPrefabs;
+    [SerializeField] private float spaceBeetwenDots;
+    [SerializeField] private GameObject dotPrefab;
     [SerializeField] private Transform dotsParent;
 
     private GameObject[] dots;
@@ -51,12 +54,12 @@ public class Sword_Skill : Skill
 
         GenereateDots();
 
-        SetupGravity();
+        SetupGraivty();
     }
 
-    private void SetupGravity()
+    private void SetupGraivty()
     {
-        if(swordType == SwordType.Bounce)
+        if (swordType == SwordType.Bounce)
             swordGravity = bounceGravity;
         else if(swordType == SwordType.Pierce)
             swordGravity = pierceGravity;
@@ -69,32 +72,38 @@ public class Sword_Skill : Skill
         if (Input.GetKeyUp(KeyCode.Mouse1))
             finalDir = new Vector2(AimDirection().normalized.x * launchForce.x, AimDirection().normalized.y * launchForce.y);
 
+
         if (Input.GetKey(KeyCode.Mouse1))
         {
             for (int i = 0; i < dots.Length; i++)
             {
-                dots[i].transform.position = DotsPosition(i * spaceBetweenDots);
+                dots[i].transform.position = DotsPosition(i * spaceBeetwenDots);
             }
         }
     }
+
     public void CreateSword()
     {
         GameObject newSword = Instantiate(swordPrefab, player.transform.position, transform.rotation);
         Sword_Skill_Controller newSwordScript = newSword.GetComponent<Sword_Skill_Controller>();
+
 
         if (swordType == SwordType.Bounce)
             newSwordScript.SetupBounce(true, bounceAmount,bounceSpeed);
         else if (swordType == SwordType.Pierce)
             newSwordScript.SetupPierce(pierceAmount);
         else if (swordType == SwordType.Spin)
-            newSwordScript.SetupSpin(true, maxTravelDistance,spinDuration,hitCooldown);
+            newSwordScript.SetupSpin(true, maxTravelDistance, spinDuration,hitCooldown);
 
-        newSwordScript.SetupSword(finalDir, swordGravity, player,freezeTimeDuration,returnSpeed);
+
+        newSwordScript.SetupSword(finalDir, swordGravity, player, freezeTimeDuration, returnSpeed);
 
         player.AssignNewSword(newSword);
 
         DotsActive(false);
     }
+
+
     #region Aim region
     public Vector2 AimDirection()
     {
@@ -118,7 +127,7 @@ public class Sword_Skill : Skill
         dots = new GameObject[numberOfDots];
         for (int i = 0; i < numberOfDots; i++)
         {
-            dots[i] = Instantiate(dotPrefabs, player.transform.position, Quaternion.identity, dotsParent);
+            dots[i] = Instantiate(dotPrefab, player.transform.position, Quaternion.identity, dotsParent);
             dots[i].SetActive(false);
         }
     }
@@ -131,5 +140,6 @@ public class Sword_Skill : Skill
 
         return position;
     }
+
     #endregion
 }

@@ -8,16 +8,19 @@ public class Skill : MonoBehaviour
     protected float cooldownTimer;
 
     protected Player player;
+    
 
     protected virtual void Start()
     {
         player = PlayerManager.instance.player;
+        
     }
 
     protected virtual void Update()
     {
         cooldownTimer -= Time.deltaTime;
     }
+
 
     public virtual bool CanUseSkill()
     {
@@ -27,23 +30,25 @@ public class Skill : MonoBehaviour
             cooldownTimer = cooldown;
             return true;
         }
+
+
         Debug.Log("Skill is on cooldown");
         return false;
     }
 
     public virtual void UseSkill()
     {
-        //do some skill spesific things
+        // do some skill spesific things
     }
 
     protected virtual Transform FindClosestEnemy(Transform _checkTransform)
     {
-        Collider2D[] collliders = Physics2D.OverlapCircleAll(_checkTransform.position, 25);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(_checkTransform.position, 25);
 
         float closestDistance = Mathf.Infinity;
         Transform closestEnemy = null;
 
-        foreach (var hit in collliders)
+        foreach (var hit in colliders)
         {
             if (hit.GetComponent<Enemy>() != null)
             {
@@ -54,6 +59,7 @@ public class Skill : MonoBehaviour
                     closestDistance = distanceToEnemy;
                     closestEnemy = hit.transform;
                 }
+
             }
         }
 

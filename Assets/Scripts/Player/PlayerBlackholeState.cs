@@ -1,10 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 public class PlayerBlackholeState : PlayerState
 {
-    private float flytime = .4f;
+    private float flyTime = .4f;
     private bool skillUsed;
+
 
     private float defaultGravity;
     public PlayerBlackholeState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
@@ -23,7 +23,7 @@ public class PlayerBlackholeState : PlayerState
         defaultGravity = player.rb.gravityScale;
 
         skillUsed = false;
-        stateTimer = flytime;
+        stateTimer = flyTime;
         rb.gravityScale = 0;
     }
 
@@ -32,7 +32,7 @@ public class PlayerBlackholeState : PlayerState
         base.Exit();
 
         player.rb.gravityScale = defaultGravity;
-        player.MakeTransprent(false);
+        player.fx.MakeTransprent(false);
     }
 
     public override void Update()
@@ -56,5 +56,4 @@ public class PlayerBlackholeState : PlayerState
         if (player.skill.blackhole.SkillCompleted())
             stateMachine.ChangeState(player.airState);
     }
-
 }

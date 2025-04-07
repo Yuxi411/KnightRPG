@@ -12,16 +12,26 @@ public class EntityFX : MonoBehaviour
     [SerializeField] private Material hitMat;
     private Material originalMat;
 
-    [Header("Aliment colors")]
+
+    [Header("Ailment colors")]
     [SerializeField] private Color[] igniteColor;
     [SerializeField] private Color[] chillColor;
     [SerializeField] private Color[] shockColor;
-
     private void Start()
     {
         sr = GetComponentInChildren<SpriteRenderer>();
         originalMat = sr.material;
+
     }
+
+    public void MakeTransprent(bool _transprent)
+    {
+        if (_transprent)
+            sr.color = Color.clear;
+        else
+            sr.color = Color.white;
+    }
+
 
     private IEnumerator FlashFX()
     {
@@ -37,7 +47,7 @@ public class EntityFX : MonoBehaviour
 
     private void RedColorBlink()
     {
-        if(sr.color != Color.white)
+        if (sr.color != Color.white)
             sr.color = Color.white;
         else
             sr.color = Color.red;
@@ -49,23 +59,25 @@ public class EntityFX : MonoBehaviour
         sr.color = Color.white;
     }
 
+
     public void IgniteFxFor(float _seconds)
     {
-        InvokeRepeating("IgniteColorFx", 0,.3f);
+        InvokeRepeating("IgniteColorFx", 0, .3f);
         Invoke("CancelColorChange", _seconds);
     }
+
     public void ChillFxFor(float _seconds)
     {
         InvokeRepeating("ChillColorFx", 0, .3f);
         Invoke("CancelColorChange", _seconds);
     }
 
+
     public void ShockFxFor(float _seconds)
     {
         InvokeRepeating("ShockColorFx", 0, .3f);
         Invoke("CancelColorChange", _seconds);
     }
-
 
     private void IgniteColorFx()
     {

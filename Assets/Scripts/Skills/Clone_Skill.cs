@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.ExceptionServices;
 using UnityEngine;
 
 public class Clone_Skill : Skill
 {
+
 
     [Header("Clone info")]
     [SerializeField] private GameObject clonePrefab;
@@ -13,19 +15,18 @@ public class Clone_Skill : Skill
     [SerializeField] private bool canAttack;
 
     [SerializeField] private bool creatCloneOnDashStart;
-    [SerializeField] private bool creatCloneOnDashOver;
+    [SerializeField] private bool createCloneOnDashOver;
     [SerializeField] private bool canCreateCloneOnCounterAttack;
-
     [Header("Clone can duplicate")]
     [SerializeField] private bool canDuplicateClone;
     [SerializeField] private float chanceToDuplicate;
-
     [Header("Crystal instead of clone")]
-    public bool crystalInsteadOfClone;
+    public bool crystalInseadOfClone;
+
 
     public void CreateClone(Transform _clonePosition,Vector3 _offset)
     {
-        if (crystalInsteadOfClone)
+        if (crystalInseadOfClone)
         {
             SkillManager.instance.crystal.CreateCrystal();
             return;
@@ -34,7 +35,7 @@ public class Clone_Skill : Skill
         GameObject newClone = Instantiate(clonePrefab);
 
         newClone.GetComponent<Clone_Skill_Controller>().
-            SetupClone(_clonePosition,cloneDuration,canAttack,_offset,FindClosestEnemy(newClone.transform),canDuplicateClone,chanceToDuplicate);
+            SetupClone(_clonePosition, cloneDuration, canAttack,_offset,FindClosestEnemy(newClone.transform),canDuplicateClone,chanceToDuplicate,player);
     }
 
     public void CreateCloneOnDashStart()
@@ -45,7 +46,7 @@ public class Clone_Skill : Skill
 
     public void CreateCloneOnDashOver()
     {
-        if (creatCloneOnDashOver)
+        if (createCloneOnDashOver)
             CreateClone(player.transform, Vector3.zero);
     }
 
@@ -55,9 +56,9 @@ public class Clone_Skill : Skill
             StartCoroutine(CreateCloneWithDelay(_enemyTransform, new Vector3(2 * player.facingDir, 0)));
     }
 
-    private IEnumerator CreateCloneWithDelay(Transform _transform,Vector3 _offset)
+    private IEnumerator CreateCloneWithDelay(Transform _trasnform,Vector3 _offset)
     {
         yield return new WaitForSeconds(.4f);
-            CreateClone(_transform,_offset);
+            CreateClone(_trasnform,_offset);
     }
 }
