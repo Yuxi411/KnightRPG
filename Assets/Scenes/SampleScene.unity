@@ -9117,10 +9117,10 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   agility:
-    baseValue: 0
+    baseValue: 5
     modifiers: 
   intelligence:
-    baseValue: 0
+    baseValue: 5
     modifiers: 
   vitality:
     baseValue: 5
@@ -9135,7 +9135,7 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   maxHealth:
-    baseValue: 100
+    baseValue: 1000
     modifiers: 
   armor:
     baseValue: 0
@@ -9144,16 +9144,16 @@ MonoBehaviour:
     baseValue: 0
     modifiers: 
   magicResistance:
-    baseValue: 1
+    baseValue: 0
     modifiers: 
   fireDamage:
-    baseValue: 50
+    baseValue: 0
     modifiers: 
   iceDamage:
     baseValue: 0
     modifiers: 
   lightingDamage:
-    baseValue: 5
+    baseValue: 0
     modifiers: 
   isIgnited: 0
   isChilled: 0
@@ -15197,6 +15197,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 172681af315f05741872b8d42ad0e607, type: 2}
   - {fileID: 11400000, guid: 81837f632c7857346a01d2db10285d7a, type: 2}
   - {fileID: 11400000, guid: 3202fa7c06356b942953b4381d3a62e3, type: 2}
+  - {fileID: 11400000, guid: ae1afab3cdba86c40a079ca41c8617ab, type: 2}
   equipment: []
   inventory: []
   stash: []

@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0cfa0fbd47ead0541abb47d693bd8484, type: 3}
-  m_Name: Thunder claw
+  m_Name: Ice and Fire
   m_EditorClassIdentifier: 
   itemType: 1
-  itemName: Thunder claw
-  icon: {fileID: 367297872, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
-  dropChance: 0
+  itemName: 
+  icon: {fileID: 1398721256, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  dropChance: 6
   equipmentType: 0
   itemEffects:
-  - {fileID: 11400000, guid: ab3227859a499aa4f9f60fc5c335e15d, type: 2}
+  - {fileID: 11400000, guid: 708c5d152c48ae74fa52c501ea56a289, type: 2}
   strength: 0
   agility: 0
   intelligence: 0
@@ -30,7 +30,7 @@ MonoBehaviour:
   armor: 0
   evasion: 0
   magicResistance: 0
-  fireDamage: 0
-  iceDamage: 0
-  lightingDamage: 5
+  fireDamage: 5
+  iceDamage: 5
+  lightingDamage: 0
   craftingMaterials: []
