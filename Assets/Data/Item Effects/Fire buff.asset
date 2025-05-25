@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76cf579f2c14c6e4cb5a3100cdd50538, type: 3}
-  m_Name: Ice and Fire effect
+  m_Script: {fileID: 11500000, guid: 8e9e0c3c45d3bea41ad1323a608ff36a, type: 3}
+  m_Name: Fire buff
   m_EditorClassIdentifier: 
-  iceAndFirePrefab: {fileID: 4144037399380718680, guid: 5f1d5243ae20f5f4f855314fd8dfe12b, type: 3}
-  xVelocity: 10
+  buffedType: 11
+  buffAmount: 15
+  buffDuration: 5

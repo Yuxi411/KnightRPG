@@ -15188,16 +15188,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingItems:
-  - {fileID: 11400000, guid: bed6f41eac39864499e397312d016a8f, type: 2}
-  - {fileID: 11400000, guid: bed6f41eac39864499e397312d016a8f, type: 2}
-  - {fileID: 11400000, guid: bed6f41eac39864499e397312d016a8f, type: 2}
-  - {fileID: 11400000, guid: 1c5d74607bd728d4684ceecc6d6f809e, type: 2}
-  - {fileID: 11400000, guid: 1c5d74607bd728d4684ceecc6d6f809e, type: 2}
-  - {fileID: 11400000, guid: ba4ca48738fbde645a35a5c622b1014a, type: 2}
-  - {fileID: 11400000, guid: 172681af315f05741872b8d42ad0e607, type: 2}
-  - {fileID: 11400000, guid: 81837f632c7857346a01d2db10285d7a, type: 2}
-  - {fileID: 11400000, guid: 3202fa7c06356b942953b4381d3a62e3, type: 2}
   - {fileID: 11400000, guid: ae1afab3cdba86c40a079ca41c8617ab, type: 2}
+  - {fileID: 11400000, guid: ef6aa39d5f0907e428e188b2de146f3f, type: 2}
+  - {fileID: 11400000, guid: e36b26d7ba5ebab4d87245a66392e306, type: 2}
   equipment: []
   inventory: []
   stash: []
@@ -16416,7 +16409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 0
-  swordType: 0
+  swordType: 1
   bounceAmount: 4
   bounceGravity: 1
   bounceSpeed: 20
