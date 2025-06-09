@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
@@ -28,6 +29,10 @@ public class Inventory : MonoBehaviour
 
     [Header("Item cooldown")]
     private float lastTimeUsedFlask;
+    private float lastTimeUsedArmor;
+
+    private float flaskCooldown;
+    private float armorCooldown;
 
     private void Awake()
     {
@@ -267,14 +272,29 @@ public class Inventory : MonoBehaviour
         if (currentFlask == null)
             return;
 
-        bool canUseFlask = Time.time > lastTimeUsedFlask + currentFlask.itemCooldown;
+        bool canUseFlask = Time.time > lastTimeUsedFlask + flaskCooldown;
 
         if (canUseFlask)
         {
+            flaskCooldown = currentFlask.itemCooldown;
             currentFlask.Effect(null);
             lastTimeUsedFlask = Time.time;
         }
         else
             Debug.Log("Flask on cooldown");
+    }
+
+    public bool CanUseArmor()
+    {
+        ItemData_Equipment currentArmor = GetEquipment(EquipmentType.Armor);
+
+        if(Time.time > lastTimeUsedArmor + armorCooldown)
+        {
+            armorCooldown = currentArmor.itemCooldown;
+            lastTimeUsedArmor = Time.time;
+            return true;
+        }
+            Debug.Log("Armor on cooldown");
+            return false;
     }
 }
